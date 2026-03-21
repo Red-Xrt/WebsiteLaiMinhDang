@@ -76,22 +76,71 @@ namespace LaiMinhDang.SachOnline.Controllers
         }
 
         [HttpPost]
-        public ActionResult DangKy(FormCollection f)
+        public ActionResult DangKy(FormCollection collection, KHACHHANG kh)
         {
-            KHACHHANG kh = new KHACHHANG();
+            // Gán các giá trị người dùng nhập dữ liệu cho các biến
+            var sHoTen = collection["HoTen"];
+            var sTenDN = collection["TenDN"];
+            var sMatKhau = collection["MatKhau"];
+            var sMatKhauNhapLai = collection["MatKhauNL"];
+            var sDiaChi = collection["DiaChi"];
+            var sEmail = collection["Email"];
+            var sDienThoai = collection["DienThoai"];
+            var dNgaySinh = String.Format("{0:MM/dd/yyyy}", collection["NgaySinh"]);
 
-            kh.HoTen = f["HoTen"];
-            kh.TaiKhoan = f["TaiKhoan"];
-            kh.MatKhau = f["MatKhau"];
-            kh.Email = f["Email"];
-            kh.DiaChi = f["DiaChi"];        // sửa ở đây
-            kh.DienThoai = f["DienThoai"];  // sửa ở đây
-            kh.NgaySinh = DateTime.Parse(f["NgaySinh"]);
+            if (String.IsNullOrEmpty(sHoTen))
+            {
+                ViewData["err1"] = "Họ tên không được rỗng";
+            }
+            else if (String.IsNullOrEmpty(sTenDN))
+            {
+                ViewData["err2"] = "Tên đăng nhập không được rỗng";
+            }
+            else if (String.IsNullOrEmpty(sMatKhau))
+            {
+                ViewData["err3"] = "Phải nhập mật khẩu";
+            }
+            else if (String.IsNullOrEmpty(sMatKhauNhapLai))
+            {
+                ViewData["err4"] = "Phải nhập lại mật khẩu";
+            }
+            else if (sMatKhau != sMatKhauNhapLai)
+            {
+                ViewData["err4"] = "Mật khẩu nhập lại không khớp";
+            }
+            else if (String.IsNullOrEmpty(sEmail))
+            {
+                ViewData["err5"] = "Email không được rỗng";
+            }
+            else if (String.IsNullOrEmpty(sDienThoai))
+            {
+                ViewData["err6"] = "Số điện thoại không được rỗng";
+            }
+            else if (data.KHACHHANGs.SingleOrDefault(n => n.TaiKhoan == sTenDN) != null)
+            {
+                ViewBag.ThongBao = "Tên đăng nhập đã tồn tại";
+            }
+            else if (data.KHACHHANGs.SingleOrDefault(n => n.Email == sEmail) != null)
+            {
+                ViewBag.ThongBao = "Email đã được sử dụng";
+            }
+            else
+            {
+                // Gán giá trị cho đối tượng được tạo mới (kh)
+                kh.HoTen = sHoTen;
+                kh.TaiKhoan = sTenDN;
+                kh.MatKhau = sMatKhau;
+                kh.Email = sEmail;
+                kh.DiaChi = sDiaChi;
+                kh.DienThoai = sDienThoai;
+                kh.NgaySinh = DateTime.Parse(collection["NgaySinh"]);
 
-            data.KHACHHANGs.Add(kh);
-            data.SaveChanges();
+                data.KHACHHANGs.Add(kh);
+                data.SaveChanges();
+                return RedirectToAction("DangNhap");
+            }
 
-            return RedirectToAction("DangNhap");
+            return this.DangKy();
         }
 
     }
