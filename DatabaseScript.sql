@@ -191,12 +191,12 @@ GO
 IF NOT EXISTS (SELECT * FROM SACH)
 BEGIN
     INSERT INTO SACH (TenSach, MoTa, AnhBia, NgayCapNhat, SoLuongBan, GiaBan, MaCD, MaNXB) VALUES
-    (N'Lập trình C# cơ bản', N'Sách hướng dẫn lập trình C# cho người mới bắt đầu.', 'book1.jpg', GETDATE(), 100, 150000, 2, 1),
-    (N'Kỹ thuật Lập trình Web', N'Hướng dẫn xây dựng website bằng ASP.NET MVC.', 'book2.jpg', GETDATE(), 50, 200000, 2, 2),
-    (N'Giáo trình Tiếng Anh', N'Tiếng Anh giao tiếp cơ bản.', 'book3.jpg', GETDATE(), 200, 120000, 1, 3),
-    (N'Đắc Nhân Tâm', N'Sách nghệ thuật sống nổi tiếng.', 'book4.jpg', GETDATE(), 500, 80000, 11, 1),
-    (N'Lịch sử Việt Nam', N'Tóm tắt lịch sử Việt Nam qua các thời kỳ.', 'book5.jpg', GETDATE(), 150, 100000, 8, 4),
-    (N'Tư duy Kinh Tế', N'Hướng dẫn cách tư duy và đầu tư kinh tế thông minh.', 'book6.jpg', GETDATE(), 80, 250000, 9, 2);
+    (N'Lập trình C# cơ bản', N'Sách hướng dẫn lập trình C# cho người mới bắt đầu.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Kỹ thuật Lập trình Web', N'Hướng dẫn xây dựng website bằng ASP.NET MVC.', 'TH002.jpg', GETDATE(), 50, 200000, 2, 2),
+    (N'Giáo trình Tiếng Anh', N'Tiếng Anh giao tiếp cơ bản.', 'TiengAnh01.jpg', GETDATE(), 200, 120000, 1, 3),
+    (N'Đắc Nhân Tâm', N'Sách nghệ thuật sống nổi tiếng.', 'Kt.jpg', GETDATE(), 500, 80000, 11, 1),
+    (N'Lịch sử Việt Nam', N'Tóm tắt lịch sử Việt Nam qua các thời kỳ.', 'TH003.jpg', GETDATE(), 150, 100000, 8, 4),
+    (N'Tư duy Kinh Tế', N'Hướng dẫn cách tư duy và đầu tư kinh tế thông minh.', 'KT0001.jpg', GETDATE(), 80, 250000, 9, 2);
 END
 GO
 
