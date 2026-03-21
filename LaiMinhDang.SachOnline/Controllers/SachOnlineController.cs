@@ -113,18 +113,11 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // SÁCH BÁN NHIỀU
         // =====================================
-        private List<SACH> SachBanNhieu(int count)
-        {
-            return db.SACHes
-                     .OrderByDescending(s => s.SoLuongBan)
-                     .Take(count)
-                     .ToList();
-        }
-
+        // Theo yêu cầu: "5. Hiển thị 6 sản phẩm mới vào SachBanNhieuPartial. Thực hiện tương tự phần 3 (hiển thị 6 cuốn sách mới)"
         public ActionResult SachBanNhieuPartial()
         {
-            var listSachBanNhieu = SachBanNhieu(6);
-            return PartialView(listSachBanNhieu);
+            var listSachMoi = SachMoi(6);
+            return PartialView(listSachMoi);
         }
 
         // =====================================
