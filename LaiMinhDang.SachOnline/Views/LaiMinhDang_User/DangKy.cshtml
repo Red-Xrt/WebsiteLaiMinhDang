@@ -3,22 +3,19 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<style>
+<style type="text/css">
     tr {
         height: 40px;
     }
 </style>
 
-<h4 style="color:red; text-align:center;">
-    @ViewBag.ThongBao
-</h4>
-
+<h4 style="color:red; text-align:center;">@ViewBag.ThongBao</h4>
 <h2 style="text-align:center">ĐĂNG KÝ THÀNH VIÊN</h2>
 
 @using (Html.BeginForm("DangKy", "LaiMinhDang_User"))
 {
+    @Html.ValidationSummary(true)
     <table align="center">
-
         <tr>
             <td>Họ tên:</td>
             <td>
@@ -26,15 +23,13 @@
                 <span style="color:red">@ViewData["err1"]</span>
             </td>
         </tr>
-
         <tr>
             <td>Tên đăng nhập:</td>
             <td>
-                @Html.TextBox("TaiKhoan")
+                @Html.TextBox("TenDN")
                 <span style="color:red">@ViewData["err2"]</span>
             </td>
         </tr>
-
         <tr>
             <td>Mật khẩu:</td>
             <td>
@@ -42,7 +37,6 @@
                 <span style="color:red">@ViewData["err3"]</span>
             </td>
         </tr>
-
         <tr>
             <td>Mật khẩu nhập lại:</td>
             <td>
@@ -50,7 +44,6 @@
                 <span style="color:red">@ViewData["err4"]</span>
             </td>
         </tr>
-
         <tr>
             <td>Email:</td>
             <td>
@@ -58,7 +51,6 @@
                 <span style="color:red">@ViewData["err5"]</span>
             </td>
         </tr>
-
         <tr>
             <td>Điện thoại:</td>
             <td>
@@ -66,28 +58,17 @@
                 <span style="color:red">@ViewData["err6"]</span>
             </td>
         </tr>
-
         <tr>
             <td>Ngày sinh:</td>
-            <td>
-                <input type="date" name="NgaySinh" />
-            </td>
+            <td><input type="date" name="NgaySinh" /></td>
         </tr>
-
         <tr>
             <td>Địa chỉ:</td>
-            <td>
-                <input type="text" name="DiaChi" />
-            </td>
+            <td><input type="text" name="DiaChi" /></td>
         </tr>
-
         <tr>
             <td></td>
-            <td>
-                <input type="submit" value="Đăng ký" class="btn btn-primary" />
-                <input type="reset" value="Xóa Thông Tin" class="btn btn-danger" />
-            </td>
+            <td><input type="submit" value="Đăng ký" class="btn btn-primary" /> <input type="reset" value="Xóa Thông Tin" class="btn btn-danger" /></td>
         </tr>
-
     </table>
 }
