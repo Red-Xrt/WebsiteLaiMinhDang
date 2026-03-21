@@ -1,97 +1,25 @@
-﻿<div class="container">
+﻿@model IEnumerable<LaiMinhDang.SachOnline.Models.SACH>
+<div class="container">
     <h2 class="text-center">SÁCH BÁN NHIỀU</h2>
     <hr />
 
     <div class="row">
-        <!-- Sách 1 -->
-        <div class="col-md-4 col-sm-6">
-            <div class="media">
-                <div class="media-left">
-                    <img src="~/Images/TH004.jpg"
-                         class="media-object"
-                         style="width:120px" />
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Tên sản phẩm</h4>
-                    <p>Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sách 2 -->
-        <div class="col-md-4 col-sm-6">
-            <div class="media">
-                <div class="media-left">
-                    <img src="~/Images/TH005.jpg"
-                         class="media-object"
-                         style="width:120px" />
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Tên sản phẩm</h4>
-                    <p>Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm.</p>
+        @foreach (var sach in Model)
+        {
+            <div class="col-md-4 col-sm-6">
+                <div class="media">
+                    <div class="media-left">
+                        <img src="~/Images/@sach.AnhBia"
+                             class="media-object"
+                             style="width:120px" />
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">@sach.TenSach</h4>
+                        <p>@sach.MoTa</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Sách 3 -->
-        <div class="col-md-4 col-sm-6">
-            <div class="media">
-                <div class="media-left">
-                    <img src="~/Images/TH006.jpg"
-                         class="media-object"
-                         style="width:120px" />
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Tên sản phẩm</h4>
-                    <p>Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sách 4 -->
-        <div class="col-md-4 col-sm-6">
-            <div class="media">
-                <div class="media-left">
-                    <img src="~/Images/TH007.jpg"
-                         class="media-object"
-                         style="width:120px" />
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Tên sản phẩm</h4>
-                    <p>Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sách 5 -->
-        <div class="col-md-4 col-sm-6">
-            <div class="media">
-                <div class="media-left">
-                    <img src="~/Images/TH008.jpg"
-                         class="media-object"
-                         style="width:120px" />
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Tên sản phẩm</h4>
-                    <p>Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sách 6 -->
-        <div class="col-md-4 col-sm-6">
-            <div class="media">
-                <div class="media-left">
-                    <img src="~/Images/THCB.jpg"
-                         class="media-object"
-                         style="width:120px" />
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Tên sản phẩm</h4>
-                    <p>Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm. Mô tả chi tiết sản phẩm.</p>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
 

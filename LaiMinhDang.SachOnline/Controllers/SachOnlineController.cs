@@ -113,9 +113,18 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // SÁCH BÁN NHIỀU
         // =====================================
+        private List<SACH> SachBanNhieu(int count)
+        {
+            return db.SACHes
+                     .OrderByDescending(s => s.SoLuongBan)
+                     .Take(count)
+                     .ToList();
+        }
+
         public ActionResult SachBanNhieuPartial()
         {
-            return PartialView();
+            var listSachBanNhieu = SachBanNhieu(6);
+            return PartialView(listSachBanNhieu);
         }
 
         // =====================================
