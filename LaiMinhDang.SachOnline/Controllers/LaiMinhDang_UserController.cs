@@ -7,7 +7,7 @@ using LaiMinhDang.SachOnline.Models;
 
 namespace LaiMinhDang.SachOnline.Controllers
 {
-    public class HoangDinhTuanAnh_UserController : Controller
+    public class LaiMinhDang_UserController : Controller
     {
         SachOnlineEntities data = new SachOnlineEntities();
 

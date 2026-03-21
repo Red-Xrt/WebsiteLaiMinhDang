@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HoangDinhTuanAnh.SachOnline.Models.NHAXUATBAN>
+﻿@model IEnumerable<LaiMinhDang.SachOnline.Models.NHAXUATBAN>
 
 @{
     ViewBag.Title = "Danh sách nhà xuất bản";
@@ -27,7 +27,7 @@
             <td>
                 <a href="@Url.Action("Edit", "NhaXuatBan", new { id = item.MaNXB })">Sửa</a> |
                 <a href="@Url.Action("Details", "NhaXuatBan", new { id = item.MaNXB })">Chi tiết</a>|
-                <a href="@Url.Action("Delete", "NhaXuatBan", new { id = item.MaNXB })">Xóa</a>
+                <a href="@Url.Action("XoaNXB", "NhaXuatBan", new { id = item.MaNXB })">Xóa</a>
             </td>
         </tr>
     }
