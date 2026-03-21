@@ -154,7 +154,54 @@ END
 GO
 
 -- =======================================================
+-- 3. THÊM DỮ LIỆU MẪU (DATA SEEDING)
+-- =======================================================
+
+-- 3.1 Dữ liệu CHUDE
+IF NOT EXISTS (SELECT * FROM CHUDE)
+BEGIN
+    INSERT INTO CHUDE (TenChuDe) VALUES
+    (N'Ngoại ngữ'),
+    (N'Công nghệ thông tin'),
+    (N'Luật'),
+    (N'Văn học'),
+    (N'Khoa học kỹ thuật'),
+    (N'Nông nghiệp'),
+    (N'Triết học-Chính trị'),
+    (N'Lịch sử, địa lý'),
+    (N'Kinh tế'),
+    (N'Sách giáo khoa'),
+    (N'Nghệ thuật sống');
+END
+GO
+
+-- 3.2 Dữ liệu NHAXUATBAN
+IF NOT EXISTS (SELECT * FROM NHAXUATBAN)
+BEGIN
+    INSERT INTO NHAXUATBAN (TenNXB, DiaChi, DienThoai) VALUES
+    (N'NXB Trẻ', N'TP. Hồ Chí Minh', '0123456789'),
+    (N'NXB Giáo Dục', N'Hà Nội', '0987654321'),
+    (N'NXB Tổng Hợp', N'Đà Nẵng', '0912345678'),
+    (N'NXB Kim Đồng', N'Hà Nội', '0909090909'),
+    (N'NXB Khoa Học', N'Hà Nội', '0888888888');
+END
+GO
+
+-- 3.3 Dữ liệu SACH
+IF NOT EXISTS (SELECT * FROM SACH)
+BEGIN
+    INSERT INTO SACH (TenSach, MoTa, AnhBia, NgayCapNhat, SoLuongBan, GiaBan, MaCD, MaNXB) VALUES
+    (N'Lập trình C# cơ bản', N'Sách hướng dẫn lập trình C# cho người mới bắt đầu.', 'book1.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Kỹ thuật Lập trình Web', N'Hướng dẫn xây dựng website bằng ASP.NET MVC.', 'book2.jpg', GETDATE(), 50, 200000, 2, 2),
+    (N'Giáo trình Tiếng Anh', N'Tiếng Anh giao tiếp cơ bản.', 'book3.jpg', GETDATE(), 200, 120000, 1, 3),
+    (N'Đắc Nhân Tâm', N'Sách nghệ thuật sống nổi tiếng.', 'book4.jpg', GETDATE(), 500, 80000, 11, 1),
+    (N'Lịch sử Việt Nam', N'Tóm tắt lịch sử Việt Nam qua các thời kỳ.', 'book5.jpg', GETDATE(), 150, 100000, 8, 4),
+    (N'Tư duy Kinh Tế', N'Hướng dẫn cách tư duy và đầu tư kinh tế thông minh.', 'book6.jpg', GETDATE(), 80, 250000, 9, 2);
+END
+GO
+
+-- =======================================================
 -- HOÀN TẤT
 -- =======================================================
-PRINT N'Đã tạo thành công database SachOnline và các bảng kèm khoá ngoại.';
+PRINT N'Đã tạo thành công database SachOnline và các bảng kèm khoá ngoại, cùng dữ liệu mẫu (Sample Data).';
 GO
