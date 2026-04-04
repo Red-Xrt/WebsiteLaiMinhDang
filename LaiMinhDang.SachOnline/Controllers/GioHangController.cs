@@ -72,11 +72,21 @@ namespace LaiMinhDang.SachOnline.Controllers
             return View(lstGioHang);
         }
 
+        [ChildActionOnly]
         public ActionResult GioHangPartial()
         {
-            ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongTien = TongTien();
-            return PartialView();
+            try
+            {
+                ViewBag.TongSoLuong = TongSoLuong();
+                ViewBag.TongTien = TongTien();
+                return PartialView();
+            }
+            catch
+            {
+                ViewBag.TongSoLuong = 0;
+                ViewBag.TongTien = 0;
+                return PartialView();
+            }
         }
 
         public ActionResult XoaGioHang(int iMaSach)
@@ -90,6 +100,10 @@ namespace LaiMinhDang.SachOnline.Controllers
                 {
                     return RedirectToAction("Index", "SachOnline");
                 }
+            }
+            else if (lstGioHang.Count == 0)
+            {
+                return RedirectToAction("Index", "SachOnline");
             }
             return RedirectToAction("GioHang");
         }
@@ -137,8 +151,10 @@ namespace LaiMinhDang.SachOnline.Controllers
             List<GioHang> lstGioHang = LayGioHang();
             ddh.MaKH = kh.MaKH;
             ddh.NgayDat = DateTime.Now;
-            var NgayGiao = String.Format("{0:MM/dd/yyyy}", f["NgayGiao"]);
-            ddh.NgayGiao = DateTime.Parse(NgayGiao);
+            if (DateTime.TryParse(f["NgayGiao"], out DateTime ngayGiao))
+            {
+                ddh.NgayGiao = ngayGiao;
+            }
             ddh.TinhTrangGiaoHang = 0;
             ddh.DaThanhToan = false;
             db.DONDATHANGs.Add(ddh);
