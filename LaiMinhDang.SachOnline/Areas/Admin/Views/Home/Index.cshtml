@@ -3,6 +3,54 @@
     ViewBag.Title = "Admin";
 }
 
-<h2 style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-    QUẢN TRỊ SACHONLINE
+<h2 style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 30px;">
+    TRANG CHỦ QUẢN TRỊ
 </h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="glyphicon glyphicon-shopping-cart" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div style="font-size: 30px; font-weight: bold;">@ViewBag.SoLuongDonHang</div>
+                        <div>Tổng Số Đơn Hàng</div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "DonHang", new { area = "Admin" })">
+                <div class="panel-footer">
+                    <span class="pull-left">Xem chi tiết</span>
+                    <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="glyphicon glyphicon-usd" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div style="font-size: 30px; font-weight: bold;">@String.Format("{0:0,0}", ViewBag.TongDoanhThu) VNĐ</div>
+                        <div>Tổng Doanh Thu</div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "DonHang", new { area = "Admin" })">
+                <div class="panel-footer">
+                    <span class="pull-left">Xem chi tiết</span>
+                    <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
