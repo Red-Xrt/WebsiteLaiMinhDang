@@ -1,0 +1,10 @@
+@{
+    ViewBag.Title = "Xác Nhận Đơn Hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center; color:red">ĐƠN HÀNG CỦA BẠN ĐÃ ĐƯỢC ĐẶT THÀNH CÔNG</h2>
+<div style="text-align:center;">
+    <p>Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ liên hệ để giao hàng trong thời gian sớm nhất.</p>
+    @Html.ActionLink("Tiếp tục mua hàng", "Index", "SachOnline", null, new { @class = "btn btn-primary" })
+</div>

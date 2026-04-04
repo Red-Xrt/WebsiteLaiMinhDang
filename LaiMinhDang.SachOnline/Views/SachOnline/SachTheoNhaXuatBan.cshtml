@@ -33,7 +33,7 @@
                         </a>
                     </h4>
                     <p>
-                        <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = sach.MaSach })" class="btn btn-primary">
+                        <a href="@Url.Action("ThemGioHang", "GioHang", new { ms = sach.MaSach, url = Request.Url.ToString() })" class="btn btn-primary">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                             Thêm vào giỏ
                         </a>

@@ -53,7 +53,7 @@
     </p>
 
     <p class="addtocard">
-        <a href="@Url.Action("AddToCard", "ShoppingCard", new { id = Model.MaSach })"
+        <a href="@Url.Action("ThemGioHang", "GioHang", new { ms = Model.MaSach, url = Request.Url.ToString() })"
            class="btn btn-primary"
            role="button">
             <span class="glyphicon glyphicon-shopping-cart"
