@@ -1,0 +1,91 @@
+@using LaiMinhDang.SachOnline.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<LaiMinhDang.SachOnline.Models.SACH>
+
+@{
+    ViewBag.Title = "Quản lý Sách";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 30px;">
+    QUẢN LÝ SÁCH
+</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Thêm sách mới</a>
+</p>
+<table class="table table-bordered table-hover">
+    <tr class="info">
+        <th>
+            Tên sách
+        </th>
+        <th style="width:200px;">
+            Mô tả
+        </th>
+        <th>
+            Ảnh bìa
+        </th>
+        <th>
+            Ngày cập nhật
+        </th>
+        <th>
+            Số lượng bán
+        </th>
+        <th>
+            Giá bán
+        </th>
+        <th>
+            Tên chủ đề
+        </th>
+        <th>
+            Tên NXB
+        </th>
+        <th style="width:200px;">
+            Hành động
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSach)
+            </td>
+            <td>
+                @Html.Raw(item.MoTa)
+            </td>
+            <td>
+                <img src="~/images/@item.AnhBia" style="width:100px" />
+            </td>
+            <td>
+                @Html.FormatValue(item.NgayCapNhat, "{0:dd/MM/yyyy}")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuongBan)
+            </td>
+            <td>
+                @Html.FormatValue(item.GiaBan, "{0:#,##0} VNĐ")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.MaSach })" class="btn btn-warning btn-sm">Sửa</a>
+                <a href="@Url.Action("Details", new { id = item.MaSach })" class="btn btn-info btn-sm">Chi tiết</a>
+                <a href="@Url.Action("Delete", new { id = item.MaSach })" class="btn btn-danger btn-sm">Xóa</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="row">
+    <div class="col-md-12 text-right">
+        Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+</div>
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

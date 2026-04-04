@@ -14,6 +14,17 @@ namespace LaiMinhDang.SachOnline.Areas.Admin.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
+
+            var soLuongDonHang = db.DONDATHANGs.Count();
+
+            var danhSachDonHang = db.DONDATHANGs.Select(d => d.MaDonHang).ToList();
+            var tongDoanhThu = db.CHITIETDATHANGs
+                .Where(c => danhSachDonHang.Contains(c.MaDonHang))
+                .Sum(c => (decimal?)(c.SoLuong * c.DonGia)) ?? 0;
+
+            ViewBag.SoLuongDonHang = soLuongDonHang;
+            ViewBag.TongDoanhThu = tongDoanhThu;
+
             return View();
         }
 
