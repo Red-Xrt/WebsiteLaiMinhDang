@@ -1,4 +1,6 @@
-﻿@model IEnumerable<LaiMinhDang.SachOnline.Models.SACH>
+@using LaiMinhDang.SachOnline.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SACH>
 
 @{
     ViewBag.Title = "Sách theo chủ đề";
@@ -42,3 +44,14 @@
         </div>
     }
 </div>
+
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("SachTheoChuDe", new { id = ViewBag.MaCD, page = page }))
+</div>
+<style>
+    .MenuTrang {
+        display: inline;
+        text-align: center;
+    }
+</style>

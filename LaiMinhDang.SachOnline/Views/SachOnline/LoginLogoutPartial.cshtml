@@ -1,0 +1,15 @@
+@using LaiMinhDang.SachOnline.Models
+@{
+    KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+}
+
+@if (Session["TaiKhoan"] == null)
+{
+    <li><a href="~/LaiMinhDang_User/DangKy"><span class="glyphicon glyphicon-user"></span> Đăng ký</a></li>
+    <li><a href="@Url.Action("DangNhap","LaiMinhDang_User", new { url = Request.Url.ToString() })"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+}
+else
+{
+    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Xin chào: @kh.HoTen</a></li>
+    <li><a href="@Url.Action("DangXuat","LaiMinhDang_User")"><span class="glyphicon glyphicon-log-out"></span> Đăng xuất</a></li>
+}

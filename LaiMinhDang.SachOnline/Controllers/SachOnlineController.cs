@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace LaiMinhDang.SachOnline.Controllers
 {
@@ -25,10 +27,12 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // TRANG CHỦ
         // =====================================
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var listSachMoi = SachMoi(6);
-            return View(listSachMoi);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            var listSachMoi = SachMoi(20);
+            return View(listSachMoi.ToPagedList(pageNumber, pageSize));
         }
 
         // =====================================
@@ -48,6 +52,14 @@ namespace LaiMinhDang.SachOnline.Controllers
         }
 
         // =====================================
+        // ĐĂNG NHẬP / ĐĂNG XUẤT PARTIAL
+        // =====================================
+        public ActionResult LoginLogout()
+        {
+            return PartialView("LoginLogoutPartial");
+        }
+
+        // =====================================
         // CHỦ ĐỀ
         // =====================================
         public ActionResult ChuDePartial()
@@ -56,19 +68,26 @@ namespace LaiMinhDang.SachOnline.Controllers
             return PartialView(listChuDe);
         }
 
-        public ActionResult SachTheoChuDe(int id)
+        public ActionResult SachTheoChuDe(int id, int? page)
         {
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+
             var listSach = db.SACHes
                              .Where(s => s.MaCD == id)
+                             .OrderBy(s => s.MaSach)
                              .ToList();
 
             var chuDe = db.CHUDEs
                           .FirstOrDefault(cd => cd.MaCD == id);
 
             if (chuDe != null)
+            {
                 ViewBag.TenChuDe = chuDe.TenChuDe;
+                ViewBag.MaCD = id;
+            }
 
-            return View(listSach);
+            return View(listSach.ToPagedList(pageNumber, pageSize));
         }
 
         // =====================================
@@ -80,19 +99,26 @@ namespace LaiMinhDang.SachOnline.Controllers
             return PartialView(listNXB);
         }
 
-        public ActionResult SachTheoNhaXuatBan(int id)
+        public ActionResult SachTheoNhaXuatBan(int id, int? page)
         {
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+
             var listSach = db.SACHes
                              .Where(s => s.MaNXB == id)
+                             .OrderBy(s => s.MaSach)
                              .ToList();
 
             var nxb = db.NHAXUATBANs
                         .FirstOrDefault(x => x.MaNXB == id);
 
             if (nxb != null)
+            {
                 ViewBag.TenNXB = nxb.TenNXB;
+                ViewBag.MaNXB = id;
+            }
 
-            return View(listSach);
+            return View(listSach.ToPagedList(pageNumber, pageSize));
         }
 
         // =====================================

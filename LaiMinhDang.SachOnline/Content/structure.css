@@ -1,0 +1,66 @@
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.box.login {
+    width: 300px;
+    margin: 100px auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.boxBody {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.boxBody label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.boxBody input[type="text"],
+.boxBody input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.rLink {
+    float: right;
+    font-size: 12px;
+    text-decoration: none;
+    color: #0066cc;
+}
+
+footer {
+    padding: 15px 20px;
+    background: #f9f9f9;
+    border-radius: 0 0 5px 5px;
+    text-align: right;
+}
+
+footer label {
+    float: left;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.btnLogin {
+    padding: 8px 15px;
+    background: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.btnLogin:hover {
+    background: #005bb5;
+}
