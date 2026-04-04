@@ -30,13 +30,15 @@
         @Model.TenSach
     </h4>
 
-    <img src="@Url.Content("~/Images/" + Model.TenSach + ".jpg")" class="anh-sach" />
+    <img src="~/Images/@Model.AnhBia" class="anh-sach" />
 
 
     <div class="motasach">
         <p>
-            @Html.Raw(Model.MoTa.ToString()
-                .Replace("\n", "</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"))
+            @if (Model.MoTa != null)
+            {
+                @Html.Raw(Model.MoTa.ToString().Replace("\n", "</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"))
+            }
         </p>
     </div>
 
