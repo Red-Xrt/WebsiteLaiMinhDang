@@ -38,6 +38,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // SLIDER
         // =====================================
+        [ChildActionOnly]
         public ActionResult SliderPartial()
         {
             return PartialView();
@@ -46,6 +47,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // MENU
         // =====================================
+        [ChildActionOnly]
         public ActionResult NavPartial()
         {
             return PartialView();
@@ -54,6 +56,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // ĐĂNG NHẬP / ĐĂNG XUẤT PARTIAL
         // =====================================
+        [ChildActionOnly]
         public ActionResult LoginLogout()
         {
             return PartialView("LoginLogoutPartial");
@@ -62,6 +65,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // CHỦ ĐỀ
         // =====================================
+        [ChildActionOnly]
         public ActionResult ChuDePartial()
         {
             var listChuDe = db.CHUDEs.ToList();
@@ -93,6 +97,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // NHÀ XUẤT BẢN
         // =====================================
+        [ChildActionOnly]
         public ActionResult NhaXuatBanPartial()
         {
             var listNXB = db.NHAXUATBANs.ToList();
@@ -140,6 +145,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         // SÁCH BÁN NHIỀU
         // =====================================
         // Theo yêu cầu: "5. Hiển thị 6 sản phẩm mới vào SachBanNhieuPartial. Thực hiện tương tự phần 3 (hiển thị 6 cuốn sách mới)"
+        [ChildActionOnly]
         public ActionResult SachBanNhieuPartial()
         {
             var listSachMoi = SachMoi(6);
@@ -149,6 +155,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // FOOTER
         // =====================================
+        [ChildActionOnly]
         public ActionResult FooterPartial()
         {
             return PartialView();

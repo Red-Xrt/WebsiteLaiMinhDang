@@ -72,6 +72,7 @@ namespace LaiMinhDang.SachOnline.Controllers
             return View(lstGioHang);
         }
 
+        [ChildActionOnly]
         public ActionResult GioHangPartial()
         {
             ViewBag.TongSoLuong = TongSoLuong();
