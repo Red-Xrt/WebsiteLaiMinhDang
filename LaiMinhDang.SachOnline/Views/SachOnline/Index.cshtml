@@ -1,4 +1,6 @@
-﻿@model IEnumerable<LaiMinhDang.SachOnline.Models.SACH>
+@using LaiMinhDang.SachOnline.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SACH>
 
 @{
     ViewBag.Title = "Trang Chủ";
@@ -64,22 +66,16 @@
 
 </div>
 
-<nav class="text-center">
-    <ul class="pagination">
-        <li>
-            <a href="#"><span>&laquo;</span></a>
-        </li>
-
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-
-        <li>
-            <a href="#"><span>&raquo;</span></a>
-        </li>
-    </ul>
-</nav>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang {
+        display: inline;
+        text-align: center;
+    }
+</style>
 
 @section sachbannhieu{
     @Html.Action("SachBanNhieuPartial", "SachOnline")

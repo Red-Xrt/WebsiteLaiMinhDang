@@ -16,8 +16,9 @@ namespace LaiMinhDang.SachOnline.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult DangNhap()
+        public ActionResult DangNhap(string url)
         {
+            ViewBag.Url = url;
             return View();
         }
 
@@ -27,6 +28,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         {
             var tendn = f["TenDN"];
             var matkhau = f["MatKhau"];
+            var url = f["Url"];
 
             if (String.IsNullOrEmpty(tendn))
             {
@@ -44,6 +46,12 @@ namespace LaiMinhDang.SachOnline.Controllers
                 if (kh != null)
                 {
                     Session["TaiKhoan"] = kh;
+
+                    if (!string.IsNullOrEmpty(url))
+                    {
+                        return Redirect(url);
+                    }
+
                     return RedirectToAction("Index", "SachOnline");
                 }
                 else
@@ -52,6 +60,7 @@ namespace LaiMinhDang.SachOnline.Controllers
                 }
             }
 
+            ViewBag.Url = url;
             return View();
         }
 

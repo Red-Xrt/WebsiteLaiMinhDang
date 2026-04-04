@@ -23,6 +23,13 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (SELECT * FROM ADMIN)
+BEGIN
+    INSERT INTO ADMIN (HoTen, DienThoai, TenDN, MatKhau, Quyen) VALUES
+    (N'Quản trị viên', '0123456789', 'admin', 'admin', 1);
+END
+GO
+
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'CHUDE')
 BEGIN
     CREATE TABLE [dbo].[CHUDE] (
@@ -183,7 +190,19 @@ BEGIN
     (N'Cấu Trúc Dữ Liệu và Giải Thuật', N'Sách Cấu trúc dữ liệu.', 'TH005.jpg', GETDATE(), 90, 175000, 2, 2),
     (N'Lập Trình Web 2005', N'Lập trình Web cũ.', 'LTWeb2005.jpg', GETDATE(), 30, 80000, 2, 3),
     (N'Cơ Sở Dữ Liệu Oracle', N'Hệ quản trị CSDL Oracle.', 'Oracle.png', GETDATE(), 60, 250000, 2, 2),
-    (N'Mô Hình MVC', N'Tìm hiểu kiến trúc MVC.', 'mvc.jpg', GETDATE(), 150, 190000, 2, 1);
+    (N'Mô Hình MVC', N'Tìm hiểu kiến trúc MVC.', 'mvc.jpg', GETDATE(), 150, 190000, 2, 1),
+    (N'Lập trình Java', N'Sách hướng dẫn lập trình Java cho người mới bắt đầu.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Lập trình Python', N'Hướng dẫn cơ bản.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Thiết kế Web HTML5 CSS3', N'Thiết kế giao diện.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Kiến trúc máy tính', N'Giáo trình kiến trúc.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Mạng máy tính', N'Giáo trình mạng máy tính.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'An toàn thông tin', N'Bảo mật thông tin cơ bản.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Phân tích thiết kế hệ thống', N'Sách PTTH Hệ thống.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Hệ điều hành', N'Giáo trình hệ điều hành.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Trí tuệ nhân tạo', N'Giáo trình AI.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Toán rời rạc', N'Toán học cho IT.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Đồ họa máy tính', N'Giáo trình đồ họa.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1),
+    (N'Điện toán đám mây', N'Tìm hiểu Cloud.', 'TH001.jpg', GETDATE(), 100, 150000, 2, 1);
 END
 GO
 
