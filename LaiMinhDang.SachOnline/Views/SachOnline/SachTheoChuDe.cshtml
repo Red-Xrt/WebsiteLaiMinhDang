@@ -33,8 +33,8 @@
                     </p>
 
                     <p>
-                        <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = item.MaSach })" class="btn btn-primary">
-                            Chi tiết
+                        <a href="@Url.Action("ThemGioHang", "GioHang", new { ms = item.MaSach, url = Request.Url.ToString() })" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Thêm vào giỏ
                         </a>
                     </p>
                 </div>
