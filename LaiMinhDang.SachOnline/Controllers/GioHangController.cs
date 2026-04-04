@@ -75,9 +75,18 @@ namespace LaiMinhDang.SachOnline.Controllers
         [ChildActionOnly]
         public ActionResult GioHangPartial()
         {
-            ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongTien = TongTien();
-            return PartialView();
+            try
+            {
+                ViewBag.TongSoLuong = TongSoLuong();
+                ViewBag.TongTien = TongTien();
+                return PartialView();
+            }
+            catch
+            {
+                ViewBag.TongSoLuong = 0;
+                ViewBag.TongTien = 0;
+                return PartialView();
+            }
         }
 
         public ActionResult XoaGioHang(int iMaSach)

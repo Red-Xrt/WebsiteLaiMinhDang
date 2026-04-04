@@ -68,8 +68,15 @@ namespace LaiMinhDang.SachOnline.Controllers
         [ChildActionOnly]
         public ActionResult ChuDePartial()
         {
-            var listChuDe = db.CHUDEs.ToList();
-            return PartialView(listChuDe);
+            try
+            {
+                var listChuDe = db.CHUDEs.ToList();
+                return PartialView(listChuDe);
+            }
+            catch
+            {
+                return PartialView(new List<CHUDE>());
+            }
         }
 
         public ActionResult SachTheoChuDe(int id, int? page)
@@ -100,8 +107,15 @@ namespace LaiMinhDang.SachOnline.Controllers
         [ChildActionOnly]
         public ActionResult NhaXuatBanPartial()
         {
-            var listNXB = db.NHAXUATBANs.ToList();
-            return PartialView(listNXB);
+            try
+            {
+                var listNXB = db.NHAXUATBANs.ToList();
+                return PartialView(listNXB);
+            }
+            catch
+            {
+                return PartialView(new List<NHAXUATBAN>());
+            }
         }
 
         public ActionResult SachTheoNhaXuatBan(int id, int? page)
@@ -148,8 +162,15 @@ namespace LaiMinhDang.SachOnline.Controllers
         [ChildActionOnly]
         public ActionResult SachBanNhieuPartial()
         {
-            var listSachMoi = SachMoi(6);
-            return PartialView(listSachMoi);
+            try
+            {
+                var listSachMoi = SachMoi(6);
+                return PartialView(listSachMoi);
+            }
+            catch
+            {
+                return PartialView(new List<SACH>());
+            }
         }
 
         // =====================================

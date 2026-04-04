@@ -1,9 +1,9 @@
 @using LaiMinhDang.SachOnline.Models
 @{
-    KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+    KHACHHANG kh = Session["TaiKhoan"] as KHACHHANG;
 }
 
-@if (Session["TaiKhoan"] == null)
+@if (kh == null)
 {
     <li><a href="~/LaiMinhDang_User/DangKy"><span class="glyphicon glyphicon-user"></span> Đăng ký</a></li>
     <li><a href="@Url.Action("DangNhap","LaiMinhDang_User", new { url = Request.Url.ToString() })"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
