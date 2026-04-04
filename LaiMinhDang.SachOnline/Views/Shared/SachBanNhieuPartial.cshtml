@@ -9,12 +9,18 @@
             <div class="col-md-4 col-sm-6">
                 <div class="media">
                     <div class="media-left">
-                        <img src="~/Images/@sach.AnhBia"
-                             class="media-object"
-                             style="width:120px" />
+                        <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = sach.MaSach })">
+                            <img src="~/Images/@(sach.TenSach).jpg"
+                                 class="media-object"
+                                 style="width:120px" />
+                        </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">@sach.TenSach</h4>
+                        <h4 class="media-heading">
+                            <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = sach.MaSach })">
+                                @sach.TenSach
+                            </a>
+                        </h4>
                         <p>@sach.MoTa</p>
                     </div>
                 </div>
