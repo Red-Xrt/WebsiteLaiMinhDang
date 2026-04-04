@@ -65,7 +65,9 @@ namespace LaiMinhDang.SachOnline.Controllers
             List<GioHang> lstGioHang = LayGioHang();
             if (lstGioHang.Count == 0)
             {
-                return RedirectToAction("Index", "SachOnline");
+                ViewBag.TongSoLuong = 0;
+                ViewBag.TongTien = 0;
+                return View(lstGioHang);
             }
             ViewBag.TongSoLuong = TongSoLuong();
             ViewBag.TongTien = TongTien();
