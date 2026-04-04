@@ -1,8 +1,4 @@
--- =======================================================
--- Script TẠO DATABASE SachOnline
--- =======================================================
 
--- 1. TẠO DATABASE
 IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'SachOnline')
 BEGIN
     CREATE DATABASE SachOnline;
@@ -12,12 +8,7 @@ GO
 USE SachOnline;
 GO
 
--- =======================================================
--- 2. TẠO CÁC BẢNG (TABLES)
--- LƯU Ý: Chạy theo thứ tự để không bị lỗi Foreign Key (Khoá ngoại)
--- =======================================================
 
--- 2.1 Bảng ADMIN
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ADMIN')
 BEGIN
     CREATE TABLE [dbo].[ADMIN] (
@@ -32,7 +23,6 @@ BEGIN
 END
 GO
 
--- 2.2 Bảng CHUDE
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'CHUDE')
 BEGIN
     CREATE TABLE [dbo].[CHUDE] (
@@ -43,7 +33,6 @@ BEGIN
 END
 GO
 
--- 2.3 Bảng KHACHHANG
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'KHACHHANG')
 BEGIN
     CREATE TABLE [dbo].[KHACHHANG] (
@@ -60,7 +49,6 @@ BEGIN
 END
 GO
 
--- 2.4 Bảng NHAXUATBAN
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'NHAXUATBAN')
 BEGIN
     CREATE TABLE [dbo].[NHAXUATBAN] (
@@ -73,7 +61,6 @@ BEGIN
 END
 GO
 
--- 2.5 Bảng TACGIA
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'TACGIA')
 BEGIN
     CREATE TABLE [dbo].[TACGIA] (
@@ -87,7 +74,6 @@ BEGIN
 END
 GO
 
--- 2.6 Bảng DONDATHANG
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'DONDATHANG')
 BEGIN
     CREATE TABLE [dbo].[DONDATHANG] (
@@ -103,7 +89,6 @@ BEGIN
 END
 GO
 
--- 2.7 Bảng SACH
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'SACH')
 BEGIN
     CREATE TABLE [dbo].[SACH] (
@@ -123,7 +108,6 @@ BEGIN
 END
 GO
 
--- 2.8 Bảng CHITIETDATHANG
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'CHITIETDATHANG')
 BEGIN
     CREATE TABLE [dbo].[CHITIETDATHANG] (
@@ -138,7 +122,6 @@ BEGIN
 END
 GO
 
--- 2.9 Bảng VIETSACH
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'VIETSACH')
 BEGIN
     CREATE TABLE [dbo].[VIETSACH] (
@@ -153,11 +136,7 @@ BEGIN
 END
 GO
 
--- =======================================================
--- 3. THÊM DỮ LIỆU MẪU (DATA SEEDING)
--- =======================================================
 
--- 3.1 Dữ liệu CHUDE
 IF NOT EXISTS (SELECT * FROM CHUDE)
 BEGIN
     INSERT INTO CHUDE (TenChuDe) VALUES
@@ -175,7 +154,6 @@ BEGIN
 END
 GO
 
--- 3.2 Dữ liệu NHAXUATBAN
 IF NOT EXISTS (SELECT * FROM NHAXUATBAN)
 BEGIN
     INSERT INTO NHAXUATBAN (TenNXB, DiaChi, DienThoai) VALUES
@@ -187,7 +165,6 @@ BEGIN
 END
 GO
 
--- 3.3 Dữ liệu SACH
 IF NOT EXISTS (SELECT * FROM SACH)
 BEGIN
     INSERT INTO SACH (TenSach, MoTa, AnhBia, NgayCapNhat, SoLuongBan, GiaBan, MaCD, MaNXB) VALUES
@@ -196,12 +173,61 @@ BEGIN
     (N'Giáo trình Tiếng Anh', N'Tiếng Anh giao tiếp cơ bản.', 'TiengAnh01.jpg', GETDATE(), 200, 120000, 1, 3),
     (N'Đắc Nhân Tâm', N'Sách nghệ thuật sống nổi tiếng.', 'Kt.jpg', GETDATE(), 500, 80000, 11, 1),
     (N'Lịch sử Việt Nam', N'Tóm tắt lịch sử Việt Nam qua các thời kỳ.', 'TH003.jpg', GETDATE(), 150, 100000, 8, 4),
-    (N'Tư duy Kinh Tế', N'Hướng dẫn cách tư duy và đầu tư kinh tế thông minh.', 'KT0001.jpg', GETDATE(), 80, 250000, 9, 2);
+    (N'Tư duy Kinh Tế', N'Hướng dẫn cách tư duy và đầu tư kinh tế thông minh.', 'KT0001.jpg', GETDATE(), 80, 250000, 9, 2),
+    (N'Học cách học lại', N'Sách hướng dẫn phương pháp tự học.', 'Hoccachhoclai.jpg', GETDATE(), 90, 150000, 11, 1),
+    (N'Kinh Tế Vi Mô', N'Giáo trình Kinh Tế Vi Mô.', 'KT0002.jpg', GETDATE(), 120, 180000, 9, 2),
+    (N'Kinh Tế Vĩ Mô', N'Giáo trình Kinh Tế Vĩ Mô.', 'KT0003.jpg', GETDATE(), 130, 185000, 9, 2),
+    (N'Quản trị kinh doanh', N'Sách quản trị kinh doanh.', 'KT0004.jpg', GETDATE(), 200, 210000, 9, 3),
+    (N'Tin Học Cơ Bản', N'Giáo trình Tin Học Cơ Bản.', 'THCB.jpg', GETDATE(), 300, 100000, 2, 2),
+    (N'Lập Trình C++ Cơ Bản', N'Giáo trình C++.', 'TH004.jpg', GETDATE(), 110, 160000, 2, 1),
+    (N'Cấu Trúc Dữ Liệu và Giải Thuật', N'Sách Cấu trúc dữ liệu.', 'TH005.jpg', GETDATE(), 90, 175000, 2, 2),
+    (N'Lập Trình Web 2005', N'Lập trình Web cũ.', 'LTWeb2005.jpg', GETDATE(), 30, 80000, 2, 3),
+    (N'Cơ Sở Dữ Liệu Oracle', N'Hệ quản trị CSDL Oracle.', 'Oracle.png', GETDATE(), 60, 250000, 2, 2),
+    (N'Mô Hình MVC', N'Tìm hiểu kiến trúc MVC.', 'mvc.jpg', GETDATE(), 150, 190000, 2, 1);
 END
 GO
 
--- =======================================================
--- HOÀN TẤT
--- =======================================================
+IF NOT EXISTS (SELECT * FROM KHACHHANG)
+BEGIN
+    INSERT INTO KHACHHANG (HoTen, TaiKhoan, MatKhau, Email, DiaChi, DienThoai, NgaySinh) VALUES
+    (N'Nguyễn Văn A', 'nguyenvana', '123456', 'nguyenvana@gmail.com', N'123 Lê Lợi, Q1, TP.HCM', '0912345678', '1990-01-01'),
+    (N'Trần Thị B', 'tranthib', 'password', 'tranthib@gmail.com', N'456 Nguyễn Trãi, Q5, TP.HCM', '0987654321', '1995-05-05');
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM TACGIA)
+BEGIN
+    INSERT INTO TACGIA (TenTG, DiaChi, TieuSu, DienThoai) VALUES
+    (N'Nguyễn Nhật Ánh', N'TP. Hồ Chí Minh', N'Nhà văn nổi tiếng với các tác phẩm viết cho tuổi thơ.', '0901234567'),
+    (N'Tony Buổi Sáng', N'Không rõ', N'Tác giả của những bài viết truyền cảm hứng cho giới trẻ.', '0988888888'),
+    (N'Dale Carnegie', N'Mỹ', N'Tác giả cuốn Đắc Nhân Tâm huyền thoại.', '1234567890');
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM DONDATHANG)
+BEGIN
+    INSERT INTO DONDATHANG (DaThanhToan, TinhTrangGiaoHang, NgayDat, NgayGiao, MaKH) VALUES
+    (1, 1, GETDATE() - 5, GETDATE() - 2, 1),
+    (0, 0, GETDATE(), NULL, 2);
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM CHITIETDATHANG)
+BEGIN
+    INSERT INTO CHITIETDATHANG (MaDonHang, MaSach, SoLuong, DonGia) VALUES
+    (1, 1, 2, 150000),
+    (1, 4, 1, 80000),
+    (2, 2, 1, 200000);
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM VIETSACH)
+BEGIN
+    INSERT INTO VIETSACH (MaTG, MaSach, VaiTro, ViTri) VALUES
+    (3, 4, N'Tác giả', N'Chính'),
+    (1, 1, N'Đồng tác giả', N'Chính');
+END
+GO
+
 PRINT N'Đã tạo thành công database SachOnline và các bảng kèm khoá ngoại, cùng dữ liệu mẫu (Sample Data).';
 GO

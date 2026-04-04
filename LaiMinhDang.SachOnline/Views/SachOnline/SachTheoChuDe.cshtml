@@ -16,19 +16,24 @@
     {
         <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
             <div class="thumbnail">
-                <img src="~/Images/@item.AnhBia"
-                     class="img-responsive img-rounded imgbook" />
+                <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = item.MaSach })">
+                    <img src="~/Images/@(item.TenSach).jpg"
+                         class="img-responsive img-rounded imgbook" />
+                </a>
 
                 <div class="caption">
-                    <h4>@item.TenSach</h4>
+                    <h4 style="min-height:70px;">
+                        <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = item.MaSach })">
+                            @item.TenSach
+                        </a>
+                    </h4>
 
                     <p style="color:red;font-weight:bold">
                         @String.Format("{0:0,0}", item.GiaBan) VNĐ
                     </p>
 
                     <p>
-                        <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = item.MaSach })"
-                           class="btn btn-primary">
+                        <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = item.MaSach })" class="btn btn-primary">
                             Chi tiết
                         </a>
                     </p>
