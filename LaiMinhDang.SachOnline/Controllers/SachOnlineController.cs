@@ -204,6 +204,41 @@ namespace LaiMinhDang.SachOnline.Controllers
         // =====================================
         // TÌM KIẾM
         // =====================================
+        private string RemoveDiacritics(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return text ?? "";
+
+            text = text.ToLower();
+            string[] vnChars = new string[]
+            {
+                "aAeEoOuUiIdDyY",
+                "áàạảãâấầậẩẫăắằặẳẵ",
+                "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+                "éèẹẻẽêếềệểễ",
+                "ÉÈẸẺẼÊẾỀỆỂỄ",
+                "óòọỏõôốồộổỗơớờợởỡ",
+                "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ",
+                "úùụủũưứừựửữ",
+                "ÚÙỤỦŨƯỨỪỰỬỮ",
+                "íìịỉĩ",
+                "ÍÌỊỈĨ",
+                "đ",
+                "Đ",
+                "ýỳỵỷỹ",
+                "ÝỲỴỶỸ"
+            };
+
+            for (int i = 1; i < vnChars.Length; i++)
+            {
+                for (int j = 0; j < vnChars[i].Length; j++)
+                {
+                    text = text.Replace(vnChars[i][j].ToString(), vnChars[0][i - 1].ToString());
+                }
+            }
+            return text;
+        }
+
         public ActionResult KetQuaTimKiem(string data, int? page)
         {
             int pageSize = 6;
@@ -211,8 +246,11 @@ namespace LaiMinhDang.SachOnline.Controllers
 
             ViewBag.TuKhoa = data;
 
-            var listSach = db.SACHes
-                             .Where(s => s.TenSach.Contains(data))
+            var allBooks = db.SACHes.ToList();
+            string searchString = RemoveDiacritics(data);
+
+            var listSach = allBooks
+                             .Where(s => RemoveDiacritics(s.TenSach).Contains(searchString))
                              .OrderBy(s => s.MaSach)
                              .ToList();
 
