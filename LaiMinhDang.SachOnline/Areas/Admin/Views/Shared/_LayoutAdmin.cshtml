@@ -1,13 +1,66 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - Quản trị hệ thống</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/Scripts/js")
+    <style>
+        body {
+            background-color: #eef2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+        }
+        .navbar-inverse {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border: none;
+            border-radius: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .navbar-inverse .navbar-brand {
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        .navbar-inverse .navbar-nav > li > a {
+            color: #e0e6ed;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .navbar-inverse .navbar-nav > li > a:hover,
+        .navbar-inverse .navbar-nav > .active > a {
+            color: #fff;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        .main-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        .footer-admin {
+            background: #1e3c72;
+            color: #e0e6ed;
+            padding: 25px 0;
+            margin-top: auto;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+        }
+        .btn-custom {
+            border-radius: 20px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .btn-custom:hover {
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -16,26 +69,48 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="@Url.Action("Index","Home", new { area = "Admin" })">SachOnlineAdmin</a>
+                <a class="navbar-brand" href="@Url.Action("Index","Home", new { area = "Admin" })">
+                    <i class="glyphicon glyphicon-king"></i> SachOnline Admin
+                </a>
             </div>
             <div class="collapse navbar-collapse" id="navAdmin">
                 <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Index","Sach", new { area = "Admin" })">QUẢN LÝ SÁCH</a> </li>
-                    <li><a href="@Url.Action("Index","ChuDe", new { area = "Admin" })">QUẢN LÝ CHỦ ĐỀ</a> </li>
-                    <li><a href="@Url.Action("Index","NhaXuatBan", new { area = "Admin" })">QUẢN LÝ NHÀ XUẤT BẢN</a> </li>
-                    <li><a href="@Url.Action("Index","KhachHang", new { area = "Admin" })">QUẢN LÝ KHÁCH HÀNG</a> </li>
-                    <li><a href="@Url.Action("Index","DonHang", new { area = "Admin" })">QUẢN LÝ ĐƠN HÀNG</a> </li>
+                    <li><a href="@Url.Action("Index","Sach", new { area = "Admin" })"><i class="glyphicon glyphicon-book"></i> SÁCH</a> </li>
+                    <li><a href="@Url.Action("Index","ChuDe", new { area = "Admin" })"><i class="glyphicon glyphicon-list"></i> CHỦ ĐỀ</a> </li>
+                    <li><a href="@Url.Action("Index","NhaXuatBan", new { area = "Admin" })"><i class="glyphicon glyphicon-print"></i> NXB</a> </li>
+                    <li><a href="@Url.Action("Index","KhachHang", new { area = "Admin" })"><i class="glyphicon glyphicon-user"></i> KHÁCH HÀNG</a> </li>
+                    <li><a href="@Url.Action("Index","DonHang", new { area = "Admin" })"><i class="glyphicon glyphicon-shopping-cart"></i> ĐƠN HÀNG</a> </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("DangXuat","LaiMinhDang_User", new { area = "" })" style="color: #ff6b6b;"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
+                    <li><a href="javascript:void(0);" onclick="goBack()" class="btn btn-default navbar-btn" style="color:#333; margin-left: 10px; font-weight: bold;"><i class="glyphicon glyphicon-arrow-left"></i> Quay lại</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container main-container">
         @RenderBody()
     </div>
-    <footer class="container well">
-        <div style="text-align:center;">
-            <p>ADMIN</p>
+    <footer class="footer-admin">
+        <div class="container text-center">
+            <p style="margin: 0;">&copy; @DateTime.Now.Year - Trang Quản Trị Hệ Thống SachOnline.</p>
         </div>
     </footer>
+
+    <script>
+        function goBack() {
+            var referrer = document.referrer;
+            if (referrer) {
+                var refLower = referrer.toLowerCase();
+                if (refLower.indexOf("dangnhap") > -1 || refLower.indexOf("dangky") > -1 || refLower.indexOf("login") > -1 || refLower.indexOf("register") > -1) {
+                    window.location.href = '@Url.Action("Index", "Home", new { area = "Admin" })';
+                } else {
+                    window.history.back();
+                }
+            } else {
+                window.location.href = '@Url.Action("Index", "Home", new { area = "Admin" })';
+            }
+        }
+    </script>
 </body>
 </html>

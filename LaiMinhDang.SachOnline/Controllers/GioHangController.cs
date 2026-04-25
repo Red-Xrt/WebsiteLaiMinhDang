@@ -13,13 +13,20 @@ namespace LaiMinhDang.SachOnline.Controllers
 
         public List<GioHang> LayGioHang()
         {
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
-            if (lstGioHang == null)
+            try
             {
-                lstGioHang = new List<GioHang>();
-                Session["GioHang"] = lstGioHang;
+                List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+                if (lstGioHang == null)
+                {
+                    lstGioHang = new List<GioHang>();
+                    Session["GioHang"] = lstGioHang;
+                }
+                return lstGioHang;
             }
-            return lstGioHang;
+            catch
+            {
+                return new List<GioHang>();
+            }
         }
 
         public ActionResult ThemGioHang(int ms, string url)
@@ -40,24 +47,38 @@ namespace LaiMinhDang.SachOnline.Controllers
 
         private int TongSoLuong()
         {
-            int iTongSoLuong = 0;
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
-            if (lstGioHang != null)
+            try
             {
-                iTongSoLuong = lstGioHang.Sum(n => n.iSoLuong);
+                int iTongSoLuong = 0;
+                List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+                if (lstGioHang != null)
+                {
+                    iTongSoLuong = lstGioHang.Sum(n => n.iSoLuong);
+                }
+                return iTongSoLuong;
             }
-            return iTongSoLuong;
+            catch
+            {
+                return 0;
+            }
         }
 
         private double TongTien()
         {
-            double dTongTien = 0;
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
-            if (lstGioHang != null)
+            try
             {
-                dTongTien = lstGioHang.Sum(n => n.dThanhTien);
+                double dTongTien = 0;
+                List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+                if (lstGioHang != null)
+                {
+                    dTongTien = lstGioHang.Sum(n => n.dThanhTien);
+                }
+                return dTongTien;
             }
-            return dTongTien;
+            catch
+            {
+                return 0;
+            }
         }
 
         public ActionResult GioHang()
@@ -148,31 +169,43 @@ namespace LaiMinhDang.SachOnline.Controllers
         [HttpPost]
         public ActionResult DatHang(FormCollection f)
         {
-            DONDATHANG ddh = new DONDATHANG();
-            KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
-            List<GioHang> lstGioHang = LayGioHang();
-            ddh.MaKH = kh.MaKH;
-            ddh.NgayDat = DateTime.Now;
-            if (DateTime.TryParse(f["NgayGiao"], out DateTime ngayGiao))
+            try
             {
-                ddh.NgayGiao = ngayGiao;
+                DONDATHANG ddh = new DONDATHANG();
+                KHACHHANG kh = Session["TaiKhoan"] as KHACHHANG;
+                if (kh == null) return RedirectToAction("DangNhap", "LaiMinhDang_User");
+
+                List<GioHang> lstGioHang = LayGioHang();
+                if (lstGioHang == null || lstGioHang.Count == 0) return RedirectToAction("Index", "SachOnline");
+
+                ddh.MaKH = kh.MaKH;
+                ddh.NgayDat = DateTime.Now;
+                if (DateTime.TryParse(f["NgayGiao"], out DateTime ngayGiao))
+                {
+                    ddh.NgayGiao = ngayGiao;
+                }
+                ddh.TinhTrangGiaoHang = 0;
+                ddh.DaThanhToan = false;
+                db.DONDATHANGs.Add(ddh);
+                db.SaveChanges();
+                foreach (var item in lstGioHang)
+                {
+                    CHITIETDATHANG ctdh = new CHITIETDATHANG();
+                    ctdh.MaDonHang = ddh.MaDonHang;
+                    ctdh.MaSach = item.iMaSach;
+                    ctdh.SoLuong = item.iSoLuong;
+                    ctdh.DonGia = (decimal)item.dDonGia;
+                    db.CHITIETDATHANGs.Add(ctdh);
+                }
+                db.SaveChanges();
+                Session["GioHang"] = null;
+                return RedirectToAction("XacNhanDonHang", "GioHang");
             }
-            ddh.TinhTrangGiaoHang = 0;
-            ddh.DaThanhToan = false;
-            db.DONDATHANGs.Add(ddh);
-            db.SaveChanges();
-            foreach (var item in lstGioHang)
+            catch (Exception ex)
             {
-                CHITIETDATHANG ctdh = new CHITIETDATHANG();
-                ctdh.MaDonHang = ddh.MaDonHang;
-                ctdh.MaSach = item.iMaSach;
-                ctdh.SoLuong = item.iSoLuong;
-                ctdh.DonGia = (decimal)item.dDonGia;
-                db.CHITIETDATHANGs.Add(ctdh);
+                // Handle exception to avoid application crash
+                return RedirectToAction("DatHang", "GioHang");
             }
-            db.SaveChanges();
-            Session["GioHang"] = null;
-            return RedirectToAction("XacNhanDonHang", "GioHang");
         }
 
         public ActionResult XacNhanDonHang()

@@ -13,16 +13,78 @@
 
     <style>
         body {
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
         }
 
         .main-content {
-            background: white;
-            padding: 15px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .panel {
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            border-radius: 6px;
+            overflow: hidden;
         }
 
         .panel-heading {
             font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .list-group-item {
+            border-left: none;
+            border-right: none;
+            transition: all 0.2s ease;
+        }
+
+        .list-group-item:first-child {
+            border-top: none;
+        }
+
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+            padding-left: 20px;
+        }
+
+        .navbar-inverse {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #ecf0f1;
+            font-weight: bold;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: #bdc3c7;
+        }
+
+        .navbar-inverse .navbar-nav > li > a:hover {
+            color: #fff;
+            background-color: #34495e;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        footer h4 {
+            color: #ecf0f1;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -54,7 +116,7 @@
     </div>
 
 
-    <div class="container">
+    <div class="container" style="margin-top: 30px;">
         @RenderSection("sachbannhieu", required: false)
     </div>
 

@@ -1,32 +1,39 @@
-@model IEnumerable<LaiMinhDang.SachOnline.Models.GioHang>
+﻿@model IEnumerable<LaiMinhDang.SachOnline.Models.GioHang>
 @{
     ViewBag.Title = "Giỏ Hàng";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2 style="text-align:center; font-weight: bold; margin-bottom: 20px; color: #337ab7;">THÔNG TIN GIỎ HÀNG</h2>
+<div style="text-align:center; margin-bottom: 30px;">
+    <h2 style="font-weight: bold; color: #2c3e50;">
+        <i class="glyphicon glyphicon-shopping-cart"></i> THÔNG TIN GIỎ HÀNG
+    </h2>
+    <p class="text-muted">Kiểm tra lại sách trong giỏ trước khi thanh toán</p>
+</div>
 
 @if (Model == null || !Model.Any())
 {
-    <div style="text-align:center; font-size:18px; color:red; margin-top:20px;">
-        <p>Giỏ hàng của bạn đang trống.</p>
-        <br />
-        <a href="@Url.Action("Index", "SachOnline")" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i> Quay lại mua sắm</a>
+    <div class="alert alert-warning text-center" style="font-size:16px; margin-top:20px; padding: 30px; border-radius: 8px;">
+        <i class="glyphicon glyphicon-info-sign" style="font-size: 40px; margin-bottom: 15px; color: #f39c12; display: block;"></i>
+        <p style="margin-bottom: 20px;">Giỏ hàng của bạn hiện đang trống. Hãy quay lại trang chủ để chọn sách nhé!</p>
+        <a href="@Url.Action("Index", "SachOnline")" class="btn btn-primary btn-lg">
+            <i class="glyphicon glyphicon-home"></i> Quay lại mua sắm
+        </a>
     </div>
 }
 else
 {
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
-            <thead style="background-color: #337ab7; color: white;">
+    <div class="table-responsive" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <table class="table table-hover" style="margin-bottom: 0; background: white;">
+            <thead style="background-color: #34495e; color: white;">
                 <tr>
-                    <th class="text-center">Mã Sách</th>
-                    <th class="text-center">Tên Sách</th>
-                    <th class="text-center">Ảnh Bìa</th>
-                    <th class="text-center">Số Lượng</th>
-                    <th class="text-center">Đơn Giá</th>
-                    <th class="text-center">Thành Tiền</th>
-                    <th class="text-center">Thao tác</th>
+                    <th class="text-center" style="border-bottom: none; padding: 15px;">Mã Sách</th>
+                    <th class="text-center" style="border-bottom: none; padding: 15px;">Tên Sách</th>
+                    <th class="text-center" style="border-bottom: none; padding: 15px;">Ảnh Bìa</th>
+                    <th class="text-center" style="border-bottom: none; padding: 15px;">Số Lượng</th>
+                    <th class="text-center" style="border-bottom: none; padding: 15px;">Đơn Giá</th>
+                    <th class="text-center" style="border-bottom: none; padding: 15px;">Thành Tiền</th>
+                    <th class="text-center" style="border-bottom: none; padding: 15px;">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
