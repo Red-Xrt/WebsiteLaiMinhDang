@@ -329,6 +329,8 @@
     <Content Include="Views\SachOnline\SachTheoNhaXuatBan.cshtml" />
     <Content Include="Views\SachOnline\ChiTietSach.cshtml" />
     <Content Include="Views\LaiMinhDang_User\DangKy.cshtml" />
+    <Content Include="Views\SachOnline\LienHe.cshtml" />
+    <Content Include="Views\SachOnline\KetQuaTimKiem.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
