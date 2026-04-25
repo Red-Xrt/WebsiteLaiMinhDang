@@ -17,9 +17,13 @@ namespace LaiMinhDang.SachOnline.Areas.Admin.Controllers
 
             var soLuongDonHang = db.DONDATHANGs.Count();
 
-            var danhSachDonHang = db.DONDATHANGs.Select(d => d.MaDonHang).ToList();
+            // Chỉ tính doanh thu cho các đơn hàng ĐÃ GIAO HÀNG và ĐÃ THANH TOÁN
+            var danhSachDonHangThanhCong = db.DONDATHANGs
+                .Where(d => d.TinhTrangGiaoHang == 1 && d.DaThanhToan == true)
+                .Select(d => d.MaDonHang).ToList();
+
             var tongDoanhThu = db.CHITIETDATHANGs
-                .Where(c => danhSachDonHang.Contains(c.MaDonHang))
+                .Where(c => danhSachDonHangThanhCong.Contains(c.MaDonHang))
                 .Sum(c => (decimal?)(c.SoLuong * c.DonGia)) ?? 0;
 
             ViewBag.SoLuongDonHang = soLuongDonHang;

@@ -56,7 +56,16 @@ namespace LaiMinhDang.SachOnline.Controllers
                 }
                 else
                 {
-                    ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng";
+                    ADMIN ad = data.ADMINs.SingleOrDefault(n => n.TenDN == tendn && n.MatKhau == matkhau);
+                    if (ad != null)
+                    {
+                        Session["Admin"] = ad;
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng";
+                    }
                 }
             }
 
@@ -71,6 +80,7 @@ namespace LaiMinhDang.SachOnline.Controllers
         public ActionResult DangXuat()
         {
             Session["TaiKhoan"] = null;
+            Session["Admin"] = null;
             return RedirectToAction("Index", "SachOnline");
         }
 

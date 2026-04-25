@@ -1,72 +1,96 @@
-﻿@model IEnumerable<LaiMinhDang.SachOnline.Models.GioHang>
+@model IEnumerable<LaiMinhDang.SachOnline.Models.GioHang>
 @{
     ViewBag.Title = "Giỏ Hàng";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2 style="text-align:center;">THÔNG TIN GIỎ HÀNG</h2>
+<h2 style="text-align:center; font-weight: bold; margin-bottom: 20px; color: #337ab7;">THÔNG TIN GIỎ HÀNG</h2>
 
 @if (Model == null || !Model.Any())
 {
     <div style="text-align:center; font-size:18px; color:red; margin-top:20px;">
         <p>Giỏ hàng của bạn đang trống.</p>
         <br />
-        <a href="@Url.Action("Index", "SachOnline")" class="btn btn-primary">Quay lại trang chủ</a>
+        <a href="@Url.Action("Index", "SachOnline")" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i> Quay lại mua sắm</a>
     </div>
 }
 else
 {
-    <table border="1" style="width:100%">
-        <tr style="background-color:#9ca1a4; font-size:15px; font-weight:bold; text-align:center;">
-            <td>Mã Sách</td>
-            <td>Tên Sách</td>
-            <td>Ảnh Bìa</td>
-            <td>Số Lượng</td>
-            <td>Đơn Giá</td>
-            <td>Thành Tiền</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td align="center">@item.iMaSach</td>
-                <td>@item.sTenSach</td>
-                <td align="center"><img src="~/Images/@item.sAnhBia" style="width:100px;"></td>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead style="background-color: #337ab7; color: white;">
+                <tr>
+                    <th class="text-center">Mã Sách</th>
+                    <th class="text-center">Tên Sách</th>
+                    <th class="text-center">Ảnh Bìa</th>
+                    <th class="text-center">Số Lượng</th>
+                    <th class="text-center">Đơn Giá</th>
+                    <th class="text-center">Thành Tiền</th>
+                    <th class="text-center">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center" style="vertical-align: middle;">@item.iMaSach</td>
+                    <td style="vertical-align: middle; font-weight: bold;">@item.sTenSach</td>
+                    <td class="text-center" style="vertical-align: middle;">
+                        <img src="~/Images/@item.sAnhBia" style="width: 80px; border-radius: 5px; box-shadow: 1px 1px 3px rgba(0,0,0,0.2);">
+                    </td>
 
-                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { iMaSach = item.iMaSach }))
-                {
-                    <td align="center">
-                        <input type="number" min="1" name="txtSoLuong" value="@item.iSoLuong" style="background-color:#f4ff94" />
+                    @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { iMaSach = item.iMaSach }))
+                    {
+                        <td class="text-center" style="vertical-align: middle;">
+                            <input type="number" min="1" name="txtSoLuong" value="@item.iSoLuong" class="form-control" style="width: 70px; display: inline-block; text-align: center;" />
+                        </td>
+                        <td class="text-center" style="vertical-align: middle; color: #d9534f; font-weight: bold;">
+                            @string.Format("{0:#,##0,0}", @item.dDonGia)
+                        </td>
+                        <td class="text-center" style="vertical-align: middle; color: #d9534f; font-weight: bold;">
+                            @string.Format("{0:#,##0,0}", @item.dThanhTien)
+                        </td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            <button type="submit" class="btn btn-info btn-sm" title="Cập nhật">
+                                <i class="glyphicon glyphicon-refresh"></i> Cập nhật
+                            </button>
+                            <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = item.iMaSach })" class="btn btn-primary btn-sm" title="Chi tiết">
+                                <i class="glyphicon glyphicon-eye-open"></i> Chi tiết
+                            </a>
+                            <a href="@Url.Action("XoaGioHang", "GioHang", new { iMaSach = item.iMaSach })" class="btn btn-danger btn-sm" title="Xóa">
+                                <i class="glyphicon glyphicon-trash"></i> Xóa
+                            </a>
+                        </td>
+                    }
+                </tr>
+            }
+            </tbody>
+            <tfoot>
+                <tr style="background-color: #f9f9f9;">
+                    <td colspan="4" class="text-right" style="font-size: 16px; font-weight: bold; color: #333; vertical-align: middle;">
+                        Tổng số lượng: <span style="color: #d9534f;">@string.Format("{0:#,##0}", @ViewBag.TongSoLuong)</span>
                     </td>
-                    <td align="center">@string.Format("{0:#,##0,0}", @item.dDonGia)</td>
-                    <td align="center">@string.Format("{0:#,##0,0}", @item.dThanhTien)</td>
-                    <td align="center"><a href="@Url.Action("ChiTietSach", "SachOnline", new { id = item.iMaSach })">Chi tiết</a></td>
-                    <td align="center">@Html.ActionLink("Xóa", "XoaGioHang", new { @iMaSach = item.iMaSach })</td>
-                    <td align="center">
-                        <input type="submit" value="Cập nhật" />
+                    <td colspan="3" class="text-center" style="font-size: 18px; font-weight: bold; color: #d9534f; vertical-align: middle;">
+                        Tổng tiền: @string.Format("{0:#,##0,0}", @ViewBag.TongTien) VNĐ
                     </td>
-                }
-            </tr>
-        }
-        <tr>
-            <td colspan="4" style="text-align:right; color:red; font-weight:bold; padding-right:5px;">
-                Tổng số lượng: @string.Format("{0:#,##0}", @ViewBag.TongSoLuong)
-            </td>
-            <td colspan="5" style="text-align:center; color:red; font-weight:bold;">
-                Tổng tiền: @string.Format("{0:#,##0,0}", @ViewBag.TongTien) VNĐ
-            </td>
-        </tr>
-        <tr style="font-weight:bold; color:blue; text-align:right;">
-            <td colspan="9">
-                @Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")
-            </td>
-        </tr>
-        <tr style="font-weight:bold; color:blue; text-align:right;">
-            <td colspan="9">
-                @Html.ActionLink("ĐẶT HÀNG", "DatHang", "GioHang")
-            </td>
-        </tr>
-    </table>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6">
+            <a href="@Url.Action("Index", "SachOnline")" class="btn btn-default">
+                <i class="glyphicon glyphicon-arrow-left"></i> Tiếp tục mua hàng
+            </a>
+            <a href="@Url.Action("XoaTatCaGioHang", "GioHang")" class="btn btn-warning">
+                <i class="glyphicon glyphicon-remove"></i> Xóa toàn bộ giỏ hàng
+            </a>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="@Url.Action("DatHang", "GioHang")" class="btn btn-success btn-lg">
+                <i class="glyphicon glyphicon-ok"></i> TIẾN HÀNH ĐẶT HÀNG
+            </a>
+        </div>
+    </div>
 }

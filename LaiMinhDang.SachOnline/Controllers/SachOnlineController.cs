@@ -192,5 +192,31 @@ namespace LaiMinhDang.SachOnline.Controllers
         {
             return View();
         }
+
+        // =====================================
+        // LIÊN HỆ
+        // =====================================
+        public ActionResult LienHe()
+        {
+            return View();
+        }
+
+        // =====================================
+        // TÌM KIẾM
+        // =====================================
+        public ActionResult KetQuaTimKiem(string data, int? page)
+        {
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+
+            ViewBag.TuKhoa = data;
+
+            var listSach = db.SACHes
+                             .Where(s => s.TenSach.Contains(data))
+                             .OrderBy(s => s.MaSach)
+                             .ToList();
+
+            return View(listSach.ToPagedList(pageNumber, pageSize));
+        }
     }
 }
