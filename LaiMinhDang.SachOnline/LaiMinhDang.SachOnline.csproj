@@ -331,6 +331,7 @@
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Views\SachOnline\LoginLogoutPartial.cshtml" />
     <Content Include="Views\LaiMinhDang_User\DangNhap.cshtml" />
   </ItemGroup>

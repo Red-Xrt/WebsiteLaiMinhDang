@@ -1,4 +1,4 @@
-﻿<nav class="navbar navbar-inverse">
+﻿<nav class="navbar navbar-inverse" style="border-radius: 0; margin-bottom: 0; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
     <div class="container">
 
         <div class="navbar-header">
@@ -8,8 +8,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="@Url.Action("Index","SachOnline")">
-                SachOnline
+            <a class="navbar-brand" href="@Url.Action("Index","SachOnline")" style="color: #fff; font-weight: bold; font-size: 24px; display: flex; align-items: center; gap: 8px;">
+                <i class="glyphicon glyphicon-book"></i> SachOnline
             </a>
         </div>
 
@@ -18,10 +18,10 @@
             <!-- MENU TRÁI -->
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="@Url.Action("Index","SachOnline")">TRANG CHỦ</a>
+                    <a href="@Url.Action("Index","SachOnline")"><i class="glyphicon glyphicon-home"></i> TRANG CHỦ</a>
                 </li>
-                <li><a href="#">GIỚI THIỆU</a></li>
-                <li><a href="@Url.Action("LienHe","SachOnline")">LIÊN HỆ</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-info-sign"></i> GIỚI THIỆU</a></li>
+                <li><a href="@Url.Action("LienHe","SachOnline")"><i class="glyphicon glyphicon-earphone"></i> LIÊN HỆ</a></li>
             </ul>
 
             <!-- MENU PHẢI -->
@@ -32,10 +32,12 @@
 
             <!-- TÌM KIẾM -->
             <form class="navbar-form navbar-right" role="search" action="@Url.Action("KetQuaTimKiem", "SachOnline")" method="get">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm" name="data" required>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm sách..." name="data" required style="border-radius: 4px 0 0 4px;">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary" style="border-radius: 0 4px 4px 0;"><i class="glyphicon glyphicon-search"></i> Tìm</button>
+                    </span>
                 </div>
-                <button type="submit" class="btn btn-default">Tìm</button>
             </form>
 
         </div>
