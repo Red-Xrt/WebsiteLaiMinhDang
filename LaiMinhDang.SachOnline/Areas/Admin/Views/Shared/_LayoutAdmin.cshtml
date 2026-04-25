@@ -7,44 +7,55 @@
     @Scripts.Render("~/Scripts/js")
     <style>
         body {
-            background-color: #f4f6f9;
+            background-color: #eef2f5;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
+            color: #2c3e50;
         }
         .navbar-inverse {
-            background-color: #343a40;
-            border-color: #343a40;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border: none;
             border-radius: 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         .navbar-inverse .navbar-brand {
             color: #fff;
             font-weight: bold;
             font-size: 24px;
+            letter-spacing: 1px;
         }
         .navbar-inverse .navbar-nav > li > a {
-            color: #d1d8e0;
+            color: #e0e6ed;
             font-weight: 500;
+            transition: all 0.3s ease;
         }
-        .navbar-inverse .navbar-nav > li > a:hover {
+        .navbar-inverse .navbar-nav > li > a:hover,
+        .navbar-inverse .navbar-nav > .active > a {
             color: #fff;
-            background-color: #495057;
+            background-color: rgba(255,255,255,0.1);
             border-radius: 4px;
         }
         .main-container {
-            background: #fff;
+            background: #ffffff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-top: 20px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-top: 30px;
+            margin-bottom: 40px;
         }
         .footer-admin {
-            background-color: #343a40;
-            color: #d1d8e0;
-            padding: 20px 0;
-            margin-top: 40px;
-            border-radius: 0;
+            background: #1e3c72;
+            color: #e0e6ed;
+            padding: 25px 0;
+            margin-top: auto;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+        }
+        .btn-custom {
+            border-radius: 20px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .btn-custom:hover {
+            transform: translateY(-2px);
         }
     </style>
 </head>

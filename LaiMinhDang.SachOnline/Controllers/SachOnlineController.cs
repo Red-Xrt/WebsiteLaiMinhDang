@@ -41,7 +41,14 @@ namespace LaiMinhDang.SachOnline.Controllers
         [ChildActionOnly]
         public ActionResult SliderPartial()
         {
-            return PartialView();
+            try
+            {
+                return PartialView();
+            }
+            catch
+            {
+                return PartialView();
+            }
         }
 
         // =====================================
@@ -50,7 +57,14 @@ namespace LaiMinhDang.SachOnline.Controllers
         [ChildActionOnly]
         public ActionResult NavPartial()
         {
-            return PartialView();
+            try
+            {
+                return PartialView();
+            }
+            catch
+            {
+                return PartialView();
+            }
         }
 
         // =====================================
@@ -186,7 +200,14 @@ namespace LaiMinhDang.SachOnline.Controllers
         [ChildActionOnly]
         public ActionResult FooterPartial()
         {
-            return PartialView();
+            try
+            {
+                return PartialView();
+            }
+            catch
+            {
+                return PartialView();
+            }
         }
         public ActionResult Create()
         {
